@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      html,
+      body {
+        font-family: Arial, sans-serif;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+      function initMap() {
+        // Constructor creates a new map - only center and zoom are required.
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 51.452103, lng: 0.00021065335},
+          zoom: 14
+        });
+
+        map.data.loadGeoJson('map.geojson');
+        var infowindow = new google.maps.InfoWindow({ 
+        content: 'Hi, your hair looks nice'
+        });
+        map.data.addListener('click', function(event) {
+           console.log(event.feature.f.arbortrack_id)
+           var myHTML = event.feature.f.arbortrack_id;
+            infowindow.setContent("<div style='width:150px; text-align: center;'>"+myHTML+"</div><div><a href=\"https://fs27.formsite.com/lhayes/form1/fill?5="+myHTML+"\">Vote here</a></div>")
+     
+          infowindow.setPosition(event.feature.getGeometry().get());
+          infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
+          infowindow.open(map);
+        });
+      }
+
+    // If you want, check here for some constraints.
+
+    //FROM MARTIN
+    
+
+    // this - instance of the layer object, in this case - map.data
+    // e.feature - instance of the feature object that initiated the event
+    // e.latLng - the position of the event
+
+ 
+    </script>
+
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDLugKDG864Bt5ifK4G6B0r5tF2KIKHrb4&v=3&callback=initMap">
+    </script>
+
+  </body>
+</html>
