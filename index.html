@@ -33,7 +33,7 @@
         map.data.addListener('click', function(event) {
            console.log(event.feature.f.arbortrack_id)
            var myHTML = event.feature.f.arbortrack_id
-            infowindow.setContent("<div style='width:150px; text-align: center;'></div><div><a href=\"https://fs27.formsite.com/lhayes/form1/fill?5="+myHTML+"\">Vote here</a></div>")
+            infowindow.setContent("<div style='width:150px; text-align: center;'></div><div><a href=\"https://fs27.formsite.com/lhayes/form1/fill?4="+myHTML+"\">Vote here</a></div>")
      
           infowindow.setPosition(event.feature.getGeometry().get());
           infowindow.setOptions({pixelOffset: new google.maps.Size(0,-30)});
